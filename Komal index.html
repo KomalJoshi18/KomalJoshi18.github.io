@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    /* 1. General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #b60d7e;
+        color: #f8f6fb;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 2. Header Styles */
+    header {
+        background-color: #e56bac;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 30px;
+        color: #e7dae1;
+    }
+
+    header p {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #bdc3c7;
+    }
+
+    /* 3. Main Content Styles */
+    main {
+        padding: 40px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* 4. FLEXBOX CONTAINER FOR CARDS */
+    #skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    /* 5. INDIVIDUAL CARD STYLES */
+    .skill-card {
+        position: relative;
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        width: 250px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border-top: 5px solid #3498db;
+    }
+
+    .toggle-icon {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #64748b;
+        line-height: 1;
+    }
+
+    .skill-card h3 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    .skill-card p {
+        font-size: 14px;
+        color: #666666;
+        line-height: 1.5;
+    }
+
+    .skill-card.selected {
+        border: 2px solid #2563eb;
+        background-color: #f0f7ff;
+        transform: scale(1.03);
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Komal</h1>
+    <p>A Beginner web developer learning to code</p>
+</header>
+
+<main>
+    <h2 style="text-align: center; margin-bottom: 30px;">My Skills</h2>
+    <!-- JavaScript will add the cards here later -->
+    <div id="skills-container"></div>
+</main>
+
+<footer>
+    <p>&copy;2026 Komal. All rights reserved.</p>
+</footer>
+
+<script>
+const mySkills = [
+    {
+        name: "HTML",
+        description: "The building blocks of the web. I use this to structure my websites."
+    },
+    {
+        name: "CSS",
+        description: "The styling language. I use this to add colors, layouts and make things pretty."
+    },
+    {
+        name: "JavaScript",
+        description: "The brain of the website. I am learning this to make my websites interactive."
+    },
+    {
+        name: "Problem Solving",
+        description: "Breaking down complex problems into smaller, manageable steps."
+    }
+];
+
+const container = document.getElementById("skills-container");
+
+mySkills.forEach(function (skill) {
+    const cardElement = document.createElement("div");
+    cardElement.className = "skill-card";
+    cardElement.innerHTML = `
+        <span class="toggle-icon">+</span>
+        <h3>${skill.name}</h3>
+    `;
+
+    const details = document.createElement("p");
+    details.textContent = skill.description;
+    details.style.display = "none";
+    cardElement.appendChild(details);
+
+    cardElement.addEventListener("click", function () {
+        const isHidden = details.style.display === "none";
+        details.style.display = isHidden ? "block" : "none";
+        cardElement.classList.toggle("selected", isHidden);
+        cardElement.querySelector(".toggle-icon").textContent = isHidden ? "-" : "+";
+    });
+
+    container.appendChild(cardElement);
+});
+</script>
+</body>
+</html>
+
+
+
+
